@@ -1,13 +1,6 @@
 // Copyright (c) Andreas Fertig.
 // SPDX-License-Identifier: MIT
 
-
-
-#if defined (_MSC_VER)
-#  define not !
-#endif /* MSVC */
-
-
 #include <type_traits>
 template<auto I>
 using integral_constant =

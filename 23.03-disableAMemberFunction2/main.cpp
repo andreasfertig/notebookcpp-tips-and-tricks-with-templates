@@ -1,21 +1,13 @@
 // Copyright (c) Andreas Fertig.
 // SPDX-License-Identifier: MIT
 
-
-
-#if defined (_MSC_VER)
-#  define not !
-#endif /* MSVC */
-
-
 #include <type_traits>
 
 template<typename T, bool enable = true>
-class Sample
-{
+class Sample {
 public:
-  template<typename Dummy = void>
-  std::enable_if<enable, int>
+  template<typename Dummy = int>
+  std::enable_if_t<enable, Dummy>
   DisableThisMethodOnRequest()
   {
     return 42;
@@ -25,4 +17,8 @@ public:
 int main()
 {
   Sample<int, false> sample{};
+
+  Sample<int, true> sample2{};
+
+  sample2.DisableThisMethodOnRequest();
 }

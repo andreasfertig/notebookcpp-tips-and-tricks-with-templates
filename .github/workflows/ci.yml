@@ -18,7 +18,7 @@ jobs:
         # GCC-10
         - {
             name: "Linux GCC 10",
-            os: ubuntu-latest,
+            os: ubuntu-20.04,
             build_type: Release,
             cxx: "g++-10",
             gcc_version: 10,
@@ -27,7 +27,7 @@ jobs:
         # Clang-11
         - {
             name: "Linux Clang 11",
-            os: ubuntu-latest,
+            os: ubuntu-20.04,
             build_type: Release,
             cxx: "clang++-11",
             clang_version: 11,
@@ -116,8 +116,9 @@ jobs:
       env:
         CXX: ${{ matrix.config.cxx }}
       run: |
+        curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
         sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-        sudo apt-get update          
+        sudo apt-get update
         sudo apt-get install g++-${{ matrix.config.gcc_version }}
         sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 100
 

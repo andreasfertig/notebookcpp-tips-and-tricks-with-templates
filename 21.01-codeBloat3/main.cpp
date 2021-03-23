@@ -1,17 +1,10 @@
 // Copyright (c) Andreas Fertig.
 // SPDX-License-Identifier: MIT
 
-
-
-#if defined (_MSC_VER)
-#  define not !
-#endif /* MSVC */
-
-
 #include <cstdio>
 
 #ifdef _MSC_VER
-#define __PRETTY_FUNCTION__ __FUNCSIG__
+#  define __PRETTY_FUNCTION__ __FUNCSIG__
 #endif
 
 int Open()

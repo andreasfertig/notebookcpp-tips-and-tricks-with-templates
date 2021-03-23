@@ -1,13 +1,6 @@
 // Copyright (c) Andreas Fertig.
 // SPDX-License-Identifier: MIT
 
-
-
-#if defined (_MSC_VER)
-#  define not !
-#endif /* MSVC */
-
-
 #include <cstdio>
 #include <type_traits>
 
@@ -19,9 +12,7 @@ min(const T& a, const T& b, const Ts&... ts)
 
   if constexpr(sizeof...(ts) > 0) {
     auto cmp = [&](const auto& value) {
-      if(value < m) {
-        m = value;
-      }
+      if(value < m) { m = value; }
     };
 
     (..., cmp(ts));

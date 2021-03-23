@@ -1,20 +1,12 @@
 // Copyright (c) Andreas Fertig.
 // SPDX-License-Identifier: MIT
 
-
-
-#if defined (_MSC_VER)
-#  define not !
-#endif /* MSVC */
-
-
 #include <array>
 #include <cstdio>
 #include <string>
 
 template<typename T>
-struct SomeClass
-{
+struct SomeClass {
   using type = T;
 };
 

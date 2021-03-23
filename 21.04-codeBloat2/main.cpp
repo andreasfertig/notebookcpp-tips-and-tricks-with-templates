@@ -1,13 +1,6 @@
 // Copyright (c) Andreas Fertig.
 // SPDX-License-Identifier: MIT
 
-
-
-#if defined (_MSC_VER)
-#  define not !
-#endif /* MSVC */
-
-
 #include <cstdio>
 
 int Open()
@@ -19,8 +12,7 @@ void Close(int) {}
 void write(int, const char*, size_t) {}
 
 template<typename T>
-class span
-{
+class span {
 public:
   constexpr span() = default;
 
@@ -31,8 +23,7 @@ public:
   constexpr span(T (&arr)[Extent])
   : data_(arr)
   , length(Extent)
-  {
-  }
+  {}
 
   constexpr size_t size() const { return length; }
   constexpr T*     data() const { return data_; }

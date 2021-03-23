@@ -1,13 +1,6 @@
 // Copyright (c) Andreas Fertig.
 // SPDX-License-Identifier: MIT
 
-
-
-#if defined (_MSC_VER)
-#  define not !
-#endif /* MSVC */
-
-
 namespace std {
   template<typename T>
   T declval() noexcept
@@ -24,16 +17,14 @@ auto DeclValExample()
   // do something with the type
 }
 
-class DflCtr
-{
+class DflCtr {
 public:
   DflCtr() = default;
 
   bool SomeFunc() const { return false; }
 };
 
-class NoDflCtr
-{
+class NoDflCtr {
 public:
   NoDflCtr() = delete;
   NoDflCtr(int) {}

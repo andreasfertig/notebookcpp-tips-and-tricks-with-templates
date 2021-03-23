@@ -1,13 +1,6 @@
 // Copyright (c) Andreas Fertig.
 // SPDX-License-Identifier: MIT
 
-
-
-#if defined (_MSC_VER)
-#  define not !
-#endif /* MSVC */
-
-
 #include <cstdio>
 #include <type_traits>
 
@@ -38,13 +31,7 @@ inline constexpr bool always_false_v()
 template<class...>
 inline constexpr bool always_false_v = false;
 
-enum class OS
-{
-  Linux,
-  Mac,
-  Windows,
-  native = Linux
-};
+enum class OS { Linux, Mac, Windows, native = Linux };
 
 template<typename T>
 void OSDependentStuff()

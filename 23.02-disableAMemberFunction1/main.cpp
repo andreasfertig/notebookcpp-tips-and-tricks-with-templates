@@ -1,18 +1,10 @@
 // Copyright (c) Andreas Fertig.
 // SPDX-License-Identifier: MIT
 
-
-
-#if defined (_MSC_VER)
-#  define not !
-#endif /* MSVC */
-
-
 #include <type_traits>
 
 template<typename T, bool enable = true>
-class Sample
-{
+class Sample {
 public:
   std::enable_if<enable, int>
   DisableThisMethodOnRequest()

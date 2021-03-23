@@ -1,20 +1,12 @@
 // Copyright (c) Andreas Fertig.
 // SPDX-License-Identifier: MIT
 
-
-
-#if defined (_MSC_VER)
-#  define not !
-#endif /* MSVC */
-
-
 #include <cstdio>
 #include <type_traits>
 #include <utility>
 
 template<typename T>
-struct remove_cvref
-{
+struct remove_cvref {
   using type =
     std::remove_cv_t<std::remove_reference_t<T>>;
 };
@@ -23,14 +15,12 @@ template<typename T>
 using remove_cvref_t = typename remove_cvref<T>::type;
 
 template<typename T, typename...>
-struct first_type
-{
+struct first_type {
   using type = remove_cvref_t<T>;
 };
 
 template<typename T, typename... Ts>
-struct are_same
-{
+struct are_same {
   static constexpr bool value = std::conjunction_v<
     std::is_same<remove_cvref_t<T>,
                  remove_cvref_t<Ts>>...>;
@@ -40,8 +30,7 @@ template<typename T, typename... Ts>
 constexpr bool are_same_v = are_same<T, Ts...>::value;
 
 template<typename... Ts>
-struct is
-{
+struct is {
   // struct is
   using BaseType = typename first_type<Ts...>::type;
 
@@ -55,8 +44,7 @@ struct is
 
   constexpr is(Ts&&... ts)
   : values{std::forward<Ts>(ts)...}
-  {
-  }
+  {}
 
   //#include "StructIsInRangeDeclaration.cpp"
 

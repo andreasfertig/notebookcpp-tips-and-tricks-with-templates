@@ -1,13 +1,6 @@
 // Copyright (c) Andreas Fertig.
 // SPDX-License-Identifier: MIT
 
-
-
-#if defined (_MSC_VER)
-#  define not !
-#endif /* MSVC */
-
-
 template<typename T>
 auto DeclValExample()
   -> decltype(T{}.SomeFunc(), void())
@@ -15,8 +8,7 @@ auto DeclValExample()
   // do something with the type
 }
 
-class DflCtr
-{
+class DflCtr {
 public:
   DflCtr() = default;
 

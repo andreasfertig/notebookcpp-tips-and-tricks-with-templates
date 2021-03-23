@@ -1,24 +1,14 @@
 // Copyright (c) Andreas Fertig.
 // SPDX-License-Identifier: MIT
 
-
-
-#if defined (_MSC_VER)
-#  define not !
-#endif /* MSVC */
-
-
 #include <cstdio>
 #include <type_traits>
 
 template<bool IsCopyable>
-struct test_if_copyable
-{
-};
+struct test_if_copyable {};
 
 template<>
-struct test_if_copyable<false>
-{
+struct test_if_copyable<false> {
   test_if_copyable(const test_if_copyable&) = delete;
   test_if_copyable
   operator=(const test_if_copyable&) = delete;
@@ -28,15 +18,13 @@ struct test_if_copyable<false>
 
 template<typename T>
 class Wrapper : private test_if_copyable<
-                  std::is_copy_constructible_v<T>>
-{
+                  std::is_copy_constructible_v<T>> {
 public:
   Wrapper(const Wrapper&) = default;
   Wrapper()               = default;
 };
 
-class NonCopyable
-{
+class NonCopyable {
 public:
   NonCopyable(const NonCopyable&) = delete;
   NonCopyable operator=(const NonCopyable&) = delete;

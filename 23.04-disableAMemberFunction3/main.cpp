@@ -1,16 +1,8 @@
 // Copyright (c) Andreas Fertig.
 // SPDX-License-Identifier: MIT
 
-
-
-#if defined (_MSC_VER)
-#  define not !
-#endif /* MSVC */
-
-
 template<typename T, bool enable = true>
-class Sample
-{
+class Sample {
 public:
   int DisableThisMethodOnRequest() requires(enable)
   {

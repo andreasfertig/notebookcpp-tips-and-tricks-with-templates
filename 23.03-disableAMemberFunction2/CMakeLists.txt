@@ -4,7 +4,7 @@
 cmake_minimum_required(VERSION 3.16.2 FATAL_ERROR)
 
 set(CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 17)
 
 set(EXEC_NAME ${CMAKE_CURRENT_SOURCE_DIR})
 
@@ -23,8 +23,8 @@ function(check_compiler COMPILER version)
     endif()
 endfunction(check_compiler)
 
-check_compiler("GNU" 10.1)
-check_compiler("Clang" 10.0)
+check_compiler("GNU" 10.2)
+check_compiler("Clang" 11.0)
 check_compiler("MSVC" 19.28.29333.0)
 
 
@@ -59,6 +59,12 @@ if(MSVC)
     add_definitions(/wd4267)
     add_definitions(/wd4505)
     add_definitions(/await) # enable coroutine support
+
+    # Use sane and nice C++ for MSVC.
+    # This makes alternative tokens (not, and, ...) as actual keywords and
+    # enables more conformant C++ in general
+    add_definitions(/permissive-)
+
     
 else()
     add_definitions(-DIS_MSVC=false)

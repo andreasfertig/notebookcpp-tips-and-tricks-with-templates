@@ -1,13 +1,6 @@
 // Copyright (c) Andreas Fertig.
 // SPDX-License-Identifier: MIT
 
-
-
-#if defined (_MSC_VER)
-#  define not !
-#endif /* MSVC */
-
-
 template<typename T>
 auto InsertTemplateArgs(const T& t)
   -> decltype(t.template_arguments(), void())
@@ -24,14 +17,12 @@ auto InsertTemplateArgs(const T& t)
 
 #include <cstdio>
 
-class Obj
-{
+class Obj {
 public:
   int x;
 };
 
-class Args
-{
+class Args {
 public:
   Obj template_arguments() const
   {
@@ -40,8 +31,7 @@ public:
   }
 };
 
-class Arr
-{
+class Arr {
 public:
   Obj asArray() const
   {
