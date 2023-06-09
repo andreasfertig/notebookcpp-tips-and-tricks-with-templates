@@ -6,16 +6,16 @@
 
 template<typename T, typename... Ts>
 constexpr auto
-min(const T& a, const T& b, const Ts&... ts)
+min(const T& a, const T& b, const Ts&... vals)
 {
   auto m = a < b ? a : b;
 
-  if constexpr(sizeof...(ts) > 0) {
+  if constexpr(sizeof...(vals) > 0) {
     auto cmp = [&](const auto& value) {
       if(value < m) { m = value; }
     };
 
-    (..., cmp(ts));
+    (..., cmp(vals));
   }
 
   return m;

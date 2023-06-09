@@ -7,7 +7,7 @@ template<typename T, typename... Args>
 void push_back(std::vector<T>& v, Args&&... args)
 {
   static_assert(sizeof...(args) > 0);
-  v.resize(v.size() + sizeof...(args));
+  v.reserve(v.size() + sizeof...(args));
 
   (v.push_back(args), ...);
 }
@@ -23,7 +23,7 @@ void push_back<int, int, int, int, int>(
   int&&                                  __args4)
 {
   /* PASSED: static_assert(4 > 0); */
-  v.resize(v.size() + 4);
+  v.reserve(v.size() + 4);
   v.push_back(__args1),
     (v.push_back(__args2),
      (v.push_back(__args3), v.push_back(__args4)));

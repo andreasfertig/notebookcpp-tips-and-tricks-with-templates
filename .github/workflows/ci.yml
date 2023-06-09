@@ -15,22 +15,22 @@ jobs:
       fail-fast: false
       matrix:
         config:
-        # GCC-10
+        # GCC-13
         - {
-            name: "Linux GCC 10",
-            os: ubuntu-20.04,
+            name: "Linux GCC 13",
+            os: ubuntu-22.04,
             build_type: Release,
-            cxx: "g++-10",
-            gcc_version: 10,
+            cxx: "g++-13",
+            gcc_version: 13,
           }
 
-        # Clang-11
+        # Clang-16
         - {
-            name: "Linux Clang 11",
-            os: ubuntu-20.04,
+            name: "Linux Clang 16",
+            os: ubuntu-22.04,
             build_type: Release,
-            cxx: "clang++-11",
-            clang_version: 11,
+            cxx: "clang++-16",
+            clang_version: 16,
             libcxx: true
           }
 
@@ -48,11 +48,11 @@ jobs:
             os: windows-latest,
             build_type: Release,
             cxx: "cl",
-            environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
+            environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2022/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
           }
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         fetch-depth: 2
 
@@ -98,19 +98,20 @@ jobs:
           )
         endif()
 
-    - name: Install Clang 11
-      id: install_clang_11
-      if: startsWith(matrix.config.os, 'ubuntu') && ( matrix.config.cxx == 'clang++-11' )
+    - name: Install Clang 16
+      id: install_clang_16
+      if: startsWith(matrix.config.os, 'ubuntu') && startsWith(matrix.config.cxx, 'clang++-')
       shell: bash
       working-directory: ${{ env.HOME }}
       run: |
         wget https://apt.llvm.org/llvm.sh
         chmod +x llvm.sh
         sudo ./llvm.sh ${{ matrix.config.clang_version }}
+        sudo apt-get install -y libunwind-${{ matrix.config.clang_version }}-dev libunwind-${{ matrix.config.clang_version }}
 
-    - name: Install g++ 10
-      id: install_gcc_10
-      if: startsWith(matrix.config.os, 'ubuntu') && ( matrix.config.cxx == 'g++-10' )
+    - name: Install g++ 13
+      id: install_gcc_13
+      if: startsWith(matrix.config.os, 'ubuntu') && ( matrix.config.cxx == 'g++-13' )
       shell: bash
       working-directory: ${{ env.HOME }}
       env:
@@ -120,7 +121,7 @@ jobs:
         sudo add-apt-repository ppa:ubuntu-toolchain-r/test
         sudo apt-get update
         sudo apt-get install g++-${{ matrix.config.gcc_version }}
-        sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 100
+        sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-13 100
 
     - name: Install libc++
       id: install_libcxx
@@ -131,6 +132,10 @@ jobs:
         CXX: ${{ matrix.config.cxx }}
       run: |
         sudo apt-get install libc++-${{ matrix.config.clang_version }}-dev libc++abi-${{ matrix.config.clang_version }}-dev
+
+    - name: Setup MSVC Dev
+      if: "startsWith(matrix.config.os, 'Windows')"
+      uses: ilammy/msvc-dev-cmd@v1
 
     - name: Configure
       id: cmake_configure

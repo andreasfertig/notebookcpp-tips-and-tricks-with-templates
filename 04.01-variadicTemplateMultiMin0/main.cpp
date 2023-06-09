@@ -10,12 +10,12 @@ template<typename T,
 constexpr auto
 min(const T& a,
     const T& b,
-    const Ts&... ts)  // #B Parameter pack
+    const Ts&... vals)  // #B Parameter pack
 {
   const auto m = a < b ? a : b;
-  if constexpr(sizeof...(ts)  // #C size of a pack
+  if constexpr(sizeof...(vals)  // #C size of a pack
                > 0) {
-    return min(m, ts...);  // #D Expand the pack
+    return min(m, vals...);  // #D Expand the pack
   }
 
   return m;

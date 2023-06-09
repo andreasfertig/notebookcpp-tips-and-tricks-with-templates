@@ -16,7 +16,7 @@ class span {
 public:
   constexpr span() = default;
 
-  constexpr span(const span&) = default;
+  constexpr span(const span&)            = default;
   constexpr span& operator=(const span&) = default;
 
   template<size_t Extent>

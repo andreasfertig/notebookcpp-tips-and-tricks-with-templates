@@ -8,9 +8,9 @@ void push_back(std::vector<T>& v,
                Arg&&           arg,
                Args&&... args)
 {
-  if constexpr(0 < sizeof...(args)) {
-    v.push_back(std::forward<Arg>(arg));
+  v.push_back(std::forward<Arg>(arg));
 
+  if constexpr(0 < sizeof...(args)) {
     push_back(v, args...);
   }
 }

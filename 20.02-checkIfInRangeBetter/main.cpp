@@ -42,8 +42,8 @@ struct is {
 
   const BaseType values[SIZE];
 
-  constexpr is(Ts&&... ts)
-  : values{std::forward<Ts>(ts)...}
+  constexpr is(Ts&&... vals)
+  : values{std::forward<Ts>(vals)...}
   {}
 
   //#include "StructIsInRangeDeclaration.cpp"

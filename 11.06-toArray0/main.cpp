@@ -8,7 +8,7 @@ namespace details {
 
   template<typename T, size_t N, size_t... I>
   constexpr std::array<std::remove_cv_t<T>, N>
-    to_array(T (&arr)[N], std::index_sequence<I...>)
+  to_array(T (&arr)[N], std::index_sequence<I...>)
   {
     return {{arr[I]...}};
   }
