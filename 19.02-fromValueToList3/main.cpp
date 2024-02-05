@@ -9,11 +9,9 @@ template<typename T, size_t N>
 constexpr bool Compare(const T (&a)[N],
                        const T (&b)[N])
 {
-  return [&]<size_t... I>(std::index_sequence<I...>)
-  {
+  return [&]<size_t... I>(std::index_sequence<I...>) {
     return ((a[I] == b[I]) && ...);
-  }
-  (std::make_index_sequence<N>{});
+  }(std::make_index_sequence<N>{});
 }
 
 int main()

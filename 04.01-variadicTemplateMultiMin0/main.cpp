@@ -15,7 +15,7 @@ min(const T& a,
   const auto m = a < b ? a : b;
   if constexpr(sizeof...(vals)  // #C size of a pack
                > 0) {
-    return min(m, vals...);  // #D Expand the pack
+    return min(m, vals...);     // #D Expand the pack
   }
 
   return m;

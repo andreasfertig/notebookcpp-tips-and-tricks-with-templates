@@ -6,7 +6,7 @@
 
 static void linux_api_call()
 {
-  printf("linux\n");
+  puts("linux");
 }
 
 extern void mac_api_call();

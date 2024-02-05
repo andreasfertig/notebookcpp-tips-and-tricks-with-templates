@@ -4,12 +4,12 @@
 #include <vector>
 
 template<typename T, typename... Args>
-void push_back(std::vector<T>& v, Args&&... args)
+void push_back(std::vector<T>& v, Args&&... vals)
 {
-  static_assert(sizeof...(args) > 0);
-  v.reserve(v.size() + sizeof...(args));
+  static_assert(sizeof...(vals) > 0);
+  v.reserve(v.size() + sizeof...(vals));
 
-  (v.push_back(args), ...);
+  (v.push_back(std::forward<Args>(vals)), ...);
 }
 
 int main()

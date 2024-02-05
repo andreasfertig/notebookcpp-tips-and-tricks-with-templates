@@ -5,7 +5,7 @@
 
 using Object = int;
 
-//#include "compare.cpp"
+// #include "compare.cpp"
 
 template<typename T, size_t N>
 constexpr bool Compare(const T (&a)[N],

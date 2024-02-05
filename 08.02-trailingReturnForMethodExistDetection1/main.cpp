@@ -26,7 +26,7 @@ class Args {
 public:
   Obj template_arguments() const
   {
-    printf("template_arguments called\n");
+    puts("template_arguments called");
     return {1};
   }
 };
@@ -35,7 +35,7 @@ class Arr {
 public:
   Obj asArray() const
   {
-    printf("template_arguments called\n");
+    puts("template_arguments called");
     return {2};
   }
 };

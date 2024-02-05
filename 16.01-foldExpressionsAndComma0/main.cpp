@@ -5,13 +5,13 @@
 
 template<typename T, typename Arg, typename... Args>
 void push_back(std::vector<T>& v,
-               Arg&&           arg,
-               Args&&... args)
+               Arg&&           val,
+               Args&&... vals)
 {
-  v.push_back(std::forward<Arg>(arg));
+  v.push_back(std::forward<Arg>(val));
 
-  if constexpr(0 < sizeof...(args)) {
-    push_back(v, args...);
+  if constexpr(0 < sizeof...(vals)) {
+    push_back(v, std::forward<Arg>(vals)...);
   }
 }
 

@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: MIT
 
 // It looks like they backported void_t
-//#define CPP11
+// #define CPP11
 
 #ifdef CPP11
 namespace std {

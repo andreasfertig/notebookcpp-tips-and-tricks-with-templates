@@ -20,8 +20,6 @@ template<typename T>
 class Wrapper : private test_if_copyable<
                   std::is_copy_constructible_v<T>> {
 public:
-  Wrapper(const Wrapper&) = default;
-  Wrapper()               = default;
 };
 
 class NonCopyable {
@@ -30,9 +28,13 @@ public:
   NonCopyable operator=(const NonCopyable&) = delete;
 };
 
+class Object {};
+
 int main()
 {
-  Wrapper<NonCopyable> w1{};
+  static_assert(not std::is_copy_constructible_v<
+                Wrapper<NonCopyable>>);
 
-  // Wrapper<NonCopyable> w2{w1};
+  static_assert(
+    std::is_copy_constructible_v<Wrapper<Object>>);
 }

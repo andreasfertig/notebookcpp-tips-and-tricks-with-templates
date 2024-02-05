@@ -46,7 +46,7 @@ struct is {
   : values{std::forward<Ts>(vals)...}
   {}
 
-  //#include "StructIsInRangeDeclaration.cpp"
+  // #include "StructIsInRangeDeclaration.cpp"
 
   constexpr bool in_range(const BaseType& min,
                           const BaseType& max) const

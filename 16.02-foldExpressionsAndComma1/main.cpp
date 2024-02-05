@@ -4,10 +4,10 @@
 #include <vector>
 
 template<typename T, typename... Args>
-void push_back(std::vector<T>& v, Args&&... args)
+void push_back(std::vector<T>& v, Args&&... vals)
 {
-  if constexpr(0 < sizeof...(args)) {
-    (v.push_back(args), ...);
+  if constexpr(0 < sizeof...(vals)) {
+    (v.push_back(std::forward<Args>(vals)), ...);
   }
 }
 

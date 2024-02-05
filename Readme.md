@@ -1,4 +1,4 @@
-# Companion Source Code for "Notebook C++ - Tips and Tricks with Templates" 2. Edition
+# Companion Source Code for "Notebook C++ - Tips and Tricks with Templates" 3. Edition
 
 [![Build Status](https://github.com/andreasfertig/notebookcpp-tips-and-tricks-with-templates/workflows/ci/badge.svg)](https://github.com/andreasfertig/notebookcpp-tips-and-tricks-with-templates/actions/) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE.txt)
 
@@ -6,7 +6,7 @@
 
 ## Code examples
 
-This repository contains runnable source code examples from the 2. edition of [Notebook C++ - Tips and Tricks with Templates](https://andreasfertig.com/books/notebookcpp-tips-and-tricks-with-templates/), by [Andreas Fertig](https://andreasfertig.com).
+This repository contains runnable source code examples from the 3. edition of [Notebook C++ - Tips and Tricks with Templates](https://andreasfertig.com/books/notebookcpp-tips-and-tricks-with-templates/), by [Andreas Fertig](https://andreasfertig.com).
 
 ### The layout of the examples
 
